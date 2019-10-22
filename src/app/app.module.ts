@@ -13,6 +13,7 @@ import { ProposalListComponent } from './proposal/proposal-list/proposal-list.co
 import { ProposalCreateComponent } from './proposal/proposal-create/proposal-create.component';
 import { SurveyListComponent } from './survey/survey-list/survey-list.component';
 import { SruveyCreateComponent } from './survey/sruvey-create/sruvey-create.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SruveyCreateComponent } from './survey/sruvey-create/sruvey-create.comp
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
