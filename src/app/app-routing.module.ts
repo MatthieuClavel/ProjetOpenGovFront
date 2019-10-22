@@ -1,4 +1,4 @@
-import { SruveyCreateComponent } from './survey/sruvey-create/sruvey-create.component';
+import { SurveyCreateComponent } from './survey/survey-create/survey-create.component';
 import { SurveyListComponent } from './survey/survey-list/survey-list.component';
 import { SurveyComponent } from './survey/survey.component';
 import { ProposalListComponent } from './proposal/proposal-list/proposal-list.component';
@@ -23,7 +23,7 @@ const routes: Routes = [
       { path: 'listProposal', component: ProposalListComponent }
     ]},
   { path: 'survey', component: SurveyComponent, children : [
-      { path: 'createSurvey', component: SruveyCreateComponent },
+      { path: 'createSurvey', component: SurveyCreateComponent },
       { path: 'listSurvey', component: SurveyListComponent }
     ]},
   { path: '', redirectTo: '/accueil', pathMatch: 'full' }

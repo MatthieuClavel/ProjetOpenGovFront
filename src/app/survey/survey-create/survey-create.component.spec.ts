@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SruveyCreateComponent } from './sruvey-create.component';
+import { SurveyCreateComponent } from './survey-create.component';
 
 describe('SruveyCreateComponent', () => {
-  let component: SruveyCreateComponent;
-  let fixture: ComponentFixture<SruveyCreateComponent>;
+  let component: SurveyCreateComponent;
+  let fixture: ComponentFixture<SurveyCreateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SruveyCreateComponent ]
+      declarations: [ SurveyCreateComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SruveyCreateComponent);
+    fixture = TestBed.createComponent(SurveyCreateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -12,7 +12,7 @@ import { EnteraccountComponent } from './authentification/enteraccount/enteracco
 import { ProposalListComponent } from './proposal/proposal-list/proposal-list.component';
 import { ProposalCreateComponent } from './proposal/proposal-create/proposal-create.component';
 import { SurveyListComponent } from './survey/survey-list/survey-list.component';
-import { SruveyCreateComponent } from './survey/sruvey-create/sruvey-create.component';
+import { SurveyCreateComponent } from './survey/survey-create/survey-create.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -27,7 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProposalListComponent,
     ProposalCreateComponent,
     SurveyListComponent,
-    SruveyCreateComponent
+    SurveyCreateComponent
   ],
   imports: [
     BrowserModule,

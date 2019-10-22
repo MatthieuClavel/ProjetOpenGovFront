@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-sruvey-create',
-  templateUrl: './sruvey-create.component.html',
-  styleUrls: ['./sruvey-create.component.css']
+  templateUrl: './survey-create.component.html',
+  styleUrls: ['./survey-create.component.css']
 })
-export class SruveyCreateComponent implements OnInit {
+export class SurveyCreateComponent implements OnInit {
 
   constructor() { }
 
