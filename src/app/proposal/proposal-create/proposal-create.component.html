@@ -1,1 +1,25 @@
-<p>proposal-create works!</p>
+<div class="card">
+    <div class="card-header">
+        <h3>Creer une proposition :</h3>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="form">
+            <input type="text" formControlName="creatorProposal">
+            <div class="form-group">
+                <label>Titre :</label>
+                <input type="text" class="form-control" formControlName="title" placeholder="entrer un titre">
+            </div>
+            <div class="form-group">
+                <label>Description :</label>
+                <textarea class="form-control" formControlName="description" placeholder="entrer une description"></textarea>
+            </div>
+            <br>
+            <!-- *ngIf="editMode" [disabled]="!form.valid" -->
+            <button type="submit" class="btn btn-outline-primary" (click)="ajouter()">Ajouter</button>
+            <button type="submit" class="btn btn-outline-primary" (click)="update()">Mettre à jour</button>
+        </form>
+
+
+    </div>
+
+</div>

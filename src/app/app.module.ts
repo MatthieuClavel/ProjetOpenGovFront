@@ -1,3 +1,4 @@
+import { ServiceService } from './../Service/service.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -14,8 +15,9 @@ import { ProposalCreateComponent } from './proposal/proposal-create/proposal-cre
 import { SurveyListComponent } from './survey/survey-list/survey-list.component';
 import { SurveyCreateComponent } from './survey/survey-create/survey-create.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { SurveyVoteComponent } from './survey/survey-vote/survey-vote.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     ProposalListComponent,
     ProposalCreateComponent,
     SurveyListComponent,
-    SurveyCreateComponent
+    SurveyCreateComponent,
+    SurveyVoteComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

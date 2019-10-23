@@ -1,3 +1,4 @@
+import { SurveyVoteComponent } from './survey/survey-vote/survey-vote.component';
 import { SurveyCreateComponent } from './survey/survey-create/survey-create.component';
 import { SurveyListComponent } from './survey/survey-list/survey-list.component';
 import { SurveyComponent } from './survey/survey.component';
@@ -24,7 +25,8 @@ const routes: Routes = [
     ]},
   { path: 'survey', component: SurveyComponent, children : [
       { path: 'createSurvey', component: SurveyCreateComponent },
-      { path: 'listSurvey', component: SurveyListComponent }
+      { path: 'listSurvey', component: SurveyListComponent },
+      {path: 'voteSurvey', component: SurveyVoteComponent}
     ]},
   { path: '', redirectTo: '/accueil', pathMatch: 'full' }
 ];
