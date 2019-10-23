@@ -3,18 +3,20 @@
         <h3>Creer une proposition :</h3>
     </div>
     <div class="card-body">
-        <form>
+        <form [formGroup]="form">
+            <input type="text" formControlName="creatorProposal">
             <div class="form-group">
                 <label>Titre :</label>
-                <input type="text" class="form-control" placeholder="entrer un titre">
+                <input type="text" class="form-control" formControlName="title" placeholder="entrer un titre">
             </div>
             <div class="form-group">
                 <label>Description :</label>
-                <input type="text" class="form-control" placeholder="entrer un titre">
+                <textarea class="form-control" formControlName="description" placeholder="entrer une description"></textarea>
             </div>
             <br>
-            <button type="submit" class="btn btn-primary">Ajouter</button>
-            <button type="submit" class="btn btn-primary">Mettre à jour</button>
+            <!-- *ngIf="editMode" [disabled]="!form.valid" -->
+            <button type="submit" class="btn btn-outline-primary" (click)="ajouter()">Ajouter</button>
+            <button type="submit" class="btn btn-outline-primary" (click)="update()">Mettre à jour</button>
         </form>
 
 
