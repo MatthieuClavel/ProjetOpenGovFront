@@ -15,8 +15,8 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
   { path: 'authentification', component: AuthentificationComponent, children : [
-      { path: 'createAccount', component: CreateaccountComponent },
-      { path: 'enterAccount', component: EnteraccountComponent }
+      { path: 'register', component: CreateaccountComponent },
+      { path: 'login', component: EnteraccountComponent }
     ]},
   { path: 'proposal', component: ProposalComponent, children : [
       { path: 'createProposal', component: ProposalCreateComponent },
