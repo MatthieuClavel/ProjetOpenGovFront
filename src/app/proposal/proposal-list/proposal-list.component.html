@@ -8,17 +8,19 @@
         <div class="card-body">
             <table class="table">
                 <thead>
-                    <th>Titre</th>
-                    <th> Description</th>
-                    <th>Edition</th>
-                    <th>Suppression</th>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Description</th>
+                        <th>Edition</th>
+                        <th>Suppression</th>
+                    </tr>
                 </thead>
 
-                <tr>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
+                <tr *ngFor="let proposal of proposals;let i=index">
+                    <td>{{proposal.title}}</td>
+                    <td>{{proposal.description}}</td>
+                    <td><input type="submit" class="btn btn-outline-primary" value="Edit" (click)="edit(i)"></td>
+                    <td><input type="submit" class="btn btn-outline-primary" value="Supprimer" (click)="delete(i)"></td>
                 </tr>
 
 
