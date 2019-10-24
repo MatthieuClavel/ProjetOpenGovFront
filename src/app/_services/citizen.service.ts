@@ -9,7 +9,7 @@ export class CitizenService {
     constructor(private http: HttpClient, private sharedService: SharedService) {}
 
     get(id: number) {
-        return this.http.get<Citizen[]>(`${this.sharedService.apiUrl}/citizen/${id}`);
+        return this.http.get<Citizen[]>(`${this.sharedService.apiUrl}/citizens/${id}`);
     }
 
     getAll() {
@@ -21,6 +21,6 @@ export class CitizenService {
     }
 
     delete(id: number) {
-        return this.http.delete(`${this.sharedService.apiUrl}/citizen/${id}`);
+        return this.http.delete(`${this.sharedService.apiUrl}/citizens/${id}`);
     }
 }

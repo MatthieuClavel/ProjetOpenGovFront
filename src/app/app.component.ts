@@ -14,7 +14,7 @@ export class AppComponent {
 
   deco() {
     this.authenticationService.logout();
-    this.router.navigate(['/accueil']);
+    location.reload(true);
   }
 
   goToLog() {

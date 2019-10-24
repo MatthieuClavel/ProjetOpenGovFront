@@ -1,3 +1,4 @@
+import { AuthGuard } from './_helpers/auth.gard';
 import { SurveyVoteComponent } from './survey/survey-vote/survey-vote.component';
 import { SurveyCreateComponent } from './survey/survey-create/survey-create.component';
 import { SurveyListComponent } from './survey/survey-list/survey-list.component';
@@ -19,7 +20,7 @@ const routes: Routes = [
       { path: 'register', component: CreateaccountComponent },
       { path: 'login', component: EnteraccountComponent }
     ]},
-  { path: 'proposal', component: ProposalComponent, children : [
+  { path: 'proposal', component: ProposalComponent, canActivate: [AuthGuard] , children : [
       { path: 'createProposal', component: ProposalCreateComponent },
       { path: 'listProposal', component: ProposalListComponent }
     ]},
