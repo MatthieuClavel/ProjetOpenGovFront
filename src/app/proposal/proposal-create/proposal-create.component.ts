@@ -14,15 +14,18 @@ export class ProposalCreateComponent implements OnInit {
   form: FormGroup;
   index: any;
   editMode: any;
+  proposals: any[];
+  proposal: any;
 
   // tslint:disable-next-line:max-line-length
   constructor(private service: ServiceService, private activatedRoute: ActivatedRoute, private router: Router, private formbuilder: FormBuilder) { }
 
   ngOnInit() {
     this.form = this.formbuilder.group({
+      proposalId: [0],
       title: ['', Validators.required],
       description: ['', Validators.required],
-      creatorProposal: ['']
+      // creatorProposal: [0]
     });
     // this.form = new FormGroup({
     // title: new FormGroup(),
@@ -30,9 +33,13 @@ export class ProposalCreateComponent implements OnInit {
     // });
     this.activatedRoute.params.subscribe((param: Params) => {
       // tslint:disable-next-line:no-string-literal
-      this.index = param['index'];
+      this.index = param['id'];
+      alert(this.index);
       if (this.index) {
-        this.form.setValue(this.service.proposals[this.index]);
+        this.service.getOne(this.index).subscribe((response) => {
+          this.form.setValue(response);
+        });
+        // this.form.setValue(this.service.proposals[this.index]);
       }
     });
     this.editMode = this.service.editMode;
@@ -43,16 +50,34 @@ export class ProposalCreateComponent implements OnInit {
     this.service.add(this.form.value).subscribe(
       (data) => {
         //  this.router.navigate(['/proposal/listProposal']);
+        // this.form.reset();
+        this.loadAllProposals();
       });
     // console.log(this.service.proposals);
-    // this.form.reset();
+
   }
 
   update() {
-    this.service.proposals.splice(this.index, 1, this.form.value);
-    this.router.navigate(['/proposal/createProposal']);
-    this.service.editMode = false;
+    this.service.update(this.form.value).subscribe(
+      (response) => {
+
+        // this.proposals.indexOf(this.proposals);
+        this.service.editMode = false;
+        this.editMode = false;
+        // this.loadAllProposals();
+        this.router.navigate(['/proposal/listProposal']);
+      });
   }
+
+  loadAllProposals() {
+    this.proposals = this.service.proposals;
+    this.service.findAll1().subscribe(
+      (response) => {
+        this.proposals = response._embedded.proposals;
+      }
+    );
+  }
+
 
 
 }

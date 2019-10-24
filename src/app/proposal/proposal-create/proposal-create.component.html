@@ -4,7 +4,9 @@
     </div>
     <div class="card-body">
         <form [formGroup]="form">
-            <input type="text" formControlName="creatorProposal">
+           <!-- <input type="text" formControlName="creatorProposal">-->
+            <input type="text" formControlName="proposalId">
+            <!--<label>{{creatorProposal}}</label> -->
             <div class="form-group">
                 <label>Titre :</label>
                 <input type="text" class="form-control" formControlName="title" placeholder="entrer un titre">
@@ -15,8 +17,8 @@
             </div>
             <br>
             <!-- *ngIf="editMode" [disabled]="!form.valid" -->
-            <button type="submit" class="btn btn-outline-primary" (click)="ajouter()">Ajouter</button>
-            <button type="submit" class="btn btn-outline-primary" (click)="update()">Mettre à jour</button>
+            <button type="submit" class="btn btn-outline-primary" *ngIf="!editMode" [disabled]="!form.valid" (click)="ajouter()">Ajouter</button>
+            <button type="submit" class="btn btn-outline-primary" *ngIf="editMode" [disabled]="!form.valid" (click)="update()">Mettre à jour</button>
         </form>
 
 
