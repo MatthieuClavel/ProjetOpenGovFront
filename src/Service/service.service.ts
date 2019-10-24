@@ -19,21 +19,21 @@ export class ServiceService {
 
 
   public add(proposal: any): Observable<any> {
-    return this.http.post(this.url + '/proposals', proposal);
+    return this.http.post(this.url + 'proposal/', proposal);
   }
 
   public update(proposal: any): Observable<any> {
-    return this.http.put(this.url + '/update', proposal, { observe: 'response' });
+    return this.http.put(this.url + 'proposals/' + proposal.proposalId, proposal, { observe: 'response' });
   }
 
   public findAll1(): Observable<any> {
-    return this.http.get<any>(this.url + '/proposals');
+    return this.http.get<any>(this.url + 'proposals/');
   }
 
   public delete(id: any): Observable<any> {
-    return this.http.delete(this.url + '/delete/' + id);
+    return this.http.delete(this.url + 'proposals/' + id);
   }
   public getOne(id: any): Observable<any> {
-    return this.http.get<any>(this.url + '/get/' + id);
+    return this.http.get<any>(this.url + 'proposals/' + id);
   }
 }

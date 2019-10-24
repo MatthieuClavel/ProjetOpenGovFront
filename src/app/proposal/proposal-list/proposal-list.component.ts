@@ -13,6 +13,10 @@ export class ProposalListComponent implements OnInit {
   constructor(private router: Router, private service: ServiceService) { }
 
   ngOnInit() {
+    this.loadAllProposals();
+  }
+
+  loadAllProposals() {
     this.proposals = this.service.proposals;
     this.service.findAll1().subscribe(
       (response) => {
@@ -22,16 +26,19 @@ export class ProposalListComponent implements OnInit {
     );
   }
 
-  delete(index) {
-    this.service.delete(index).subscribe(
-      (response) => {
-        this.proposals = response._embedded.Proposals;
-      }
-    );
-  }
+  delete(id) {
+    if ( confirm('Etes-vous sûr de vouloir supprimer ?')) {
+    this.service.delete(id).subscribe(
+      response => {
+        // alert(response);
+        // this.service.proposals.splice(id, 1);
+        this.loadAllProposals();
+      });
+  } }
 
-  edit(index) {
-    this.router.navigate(['/prosposal/createProposal', index]);
+  edit(id) {
+    alert(id);
+    this.router.navigate(['/proposal/createProposal', id]);
     this.service.editMode = true;
   }
 

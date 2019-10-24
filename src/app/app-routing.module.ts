@@ -21,7 +21,8 @@ const routes: Routes = [
     ]},
   { path: 'proposal', component: ProposalComponent, children : [
       { path: 'createProposal', component: ProposalCreateComponent },
-      { path: 'listProposal', component: ProposalListComponent }
+      { path: 'listProposal', component: ProposalListComponent },
+      { path: 'createProposal/:id', component: ProposalCreateComponent }
     ]},
   { path: 'survey', component: SurveyComponent, children : [
       { path: 'createSurvey', component: SurveyCreateComponent },

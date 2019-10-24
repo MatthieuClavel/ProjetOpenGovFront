@@ -1,6 +1,6 @@
 export class Proposal {
-    identifiant: number;
+    proposalId: number;
     title: string;
     description: string;
-    creatorProposal: number;
+    creatorProposal: any;
 }
