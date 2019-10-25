@@ -20,6 +20,9 @@
             <button type="submit" class="btn btn-outline-primary" *ngIf="!editMode" [disabled]="!form.valid" (click)="ajouter()">Ajouter</button>
             <button type="submit" class="btn btn-outline-primary" *ngIf="editMode" [disabled]="!form.valid" (click)="update()">Mettre à jour</button>
         </form>
+        <div *ngIf="editMode">
+            Créé par : {{creator}}
+        </div>
 
 
     </div>

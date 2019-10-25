@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SurveyVoteComponent } from './survey/survey-vote/survey-vote.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ParametersComponent } from './authentification/parameters/parameters.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProposalCreateComponent,
     SurveyListComponent,
     SurveyCreateComponent,
-    SurveyVoteComponent
+    SurveyVoteComponent,
+    ParametersComponent
   ],
   imports: [
     BrowserModule,

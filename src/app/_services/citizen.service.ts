@@ -8,7 +8,7 @@ export class CitizenService {
 
     constructor(private http: HttpClient, private sharedService: SharedService) {}
 
-    get(id: number) {
+    getOne(id: number) {
         return this.http.get<Citizen[]>(`${this.sharedService.apiUrl}/citizens/${id}`);
     }
 
@@ -18,6 +18,10 @@ export class CitizenService {
 
     save(citizen: Citizen) {
         return this.http.post(`${this.sharedService.apiUrl}/citizens`, citizen);
+    }
+
+    update(citizen: Citizen) {
+        return this.http.put(`${this.sharedService.apiUrl}/citizens/${citizen.citizenId}`, citizen);
     }
 
     delete(id: number) {
