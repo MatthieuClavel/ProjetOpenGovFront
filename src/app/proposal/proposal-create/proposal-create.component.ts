@@ -16,7 +16,7 @@ export class ProposalCreateComponent implements OnInit {
   editMode: any;
   proposals: ProposalFull[];
   proposal: ProposalFull;
-  creatorLogin: string;
+  creatorLogin = 'Moi';
 
   constructor(
     private service: ServiceService,
@@ -30,15 +30,15 @@ export class ProposalCreateComponent implements OnInit {
       proposalId: [0],
       title: ['', Validators.required],
       description: ['', Validators.required],
+      creatorProposal: [null],
+      citizenProposals: [null]
     });
     this.activatedRoute.params.subscribe((param: Params) => {
       this.index = param.id;
       if (this.index) {
         this.service.getOne(this.index).subscribe((response) => {
           this.form.setValue(response);
-        });
-        this.service.getCreator(this.index).subscribe((creator) => {
-          this.creatorLogin = creator.login;
+          this.creatorLogin = response.creatorProposal.login;
         });
       }
     });
@@ -48,7 +48,7 @@ export class ProposalCreateComponent implements OnInit {
   ajouter() {
     this.service.add(this.form.value).subscribe(
       (data) => {
-        this.router.navigate(['/proposals/listProposal']);
+        this.router.navigate(['/proposal/listProposal']);
       });
 
   }
@@ -58,7 +58,7 @@ export class ProposalCreateComponent implements OnInit {
       (response) => {
         this.service.editMode = false;
         this.editMode = false;
-        this.router.navigate(['/proposals/listProposal']);
+        this.router.navigate(['/proposal/listProposal']);
       });
   }
 
