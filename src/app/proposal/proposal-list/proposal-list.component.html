@@ -15,6 +15,7 @@
                         <th>Createur</th>
                         <th>Edition</th>
                         <th>Suppression</th>
+                        <th> Donner mon avis</th>
                     </tr>
                 </thead>
 
@@ -27,6 +28,8 @@
                             (click)="edit(proposal.proposalId)"></td>
                     <td><input type="submit" class="btn btn-outline-primary" value="Supprimer"
                             (click)="delete(proposal.proposalId)"></td>
+                    <td><input type="submit" class="btn btn-outline-primary" value="écrire un commentaire"
+                            (click)="RedirectToProposal(proposal.proposalId)"></td>
                 </tr>
 
 
