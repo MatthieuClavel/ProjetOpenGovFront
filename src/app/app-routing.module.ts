@@ -1,3 +1,4 @@
+import { GraphComponent } from './graph/graph.component';
 import { SurveyCreateComponent } from './survey/survey-create/survey-create.component';
 import { SurveyListComponent } from './survey/survey-list/survey-list.component';
 import { SurveyComponent } from './survey/survey.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
       { path: 'createSurvey', component: SurveyCreateComponent },
       { path: 'listSurvey', component: SurveyListComponent }
     ]},
+    { path: 'graph', component: GraphComponent},
   { path: '', redirectTo: '/accueil', pathMatch: 'full' }
 ];
 

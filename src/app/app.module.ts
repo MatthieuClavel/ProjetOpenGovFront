@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AccueilComponent } from './accueil/accueil.component';
@@ -14,6 +13,9 @@ import { ProposalCreateComponent } from './proposal/proposal-create/proposal-cre
 import { SurveyListComponent } from './survey/survey-list/survey-list.component';
 import { SurveyCreateComponent } from './survey/survey-create/survey-create.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GraphComponent } from './graph/graph.component';
+import { HighchartsChartComponent } from 'highcharts-angular';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProposalListComponent,
     ProposalCreateComponent,
     SurveyListComponent,
-    SurveyCreateComponent
+    SurveyCreateComponent,
+    GraphComponent,
+    HighchartsChartComponent
   ],
   imports: [
     BrowserModule,
@@ -38,3 +42,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+
