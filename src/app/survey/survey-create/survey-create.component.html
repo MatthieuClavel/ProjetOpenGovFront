@@ -1,1 +1,24 @@
-<p>sruvey-create works!</p>
+<div class="card">
+        <div class="card-header">
+            <h3>Creer un sondage :</h3>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="form">
+                <div class="form-group">
+                    <label>Question :</label>
+                    <input type="text" class="form-control" placeholder="entrer une question">
+                </div>
+                <div class="form-group">
+                    <label> Réponses possibles :</label>
+                    <input type="text" class="form-control" placeholder="entrer une réponse">
+                </div>
+                <button type="submit" class="btn btn-outline-primary">Ajouter une réponse</button>
+                <br>
+                <button type="submit" class="btn btn-outline-primary" (click)="ajouter()">Publier le sondage</button>
+                
+            </form>
+    
+    
+        </div>
+    
+    </div>

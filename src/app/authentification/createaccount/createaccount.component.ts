@@ -1,4 +1,9 @@
+import { CitizenService } from './../../_services/citizen.service';
+import { AuthenticationService } from 'src/app/_services/authentication.service';
+import { first } from 'rxjs/operators';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-createaccount',
@@ -6,10 +11,49 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./createaccount.component.css']
 })
 export class CreateaccountComponent implements OnInit {
+  registerForm: FormGroup;
+  loading = false;
+  submitted = false;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    private citizenService: CitizenService
+  ) {
+    // redirect to enterAccount if already logged in
+    if (this.authenticationService.currentUserValue) {
+      this.router.navigate(['/accueil']);
+    }
   }
 
+  ngOnInit() {
+    this.registerForm = this.formBuilder.group({
+      login: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
+
+  // convenience getter for easy access form fields
+  get f() { return this.registerForm.controls; }
+
+  onSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.registerForm.invalid) {
+      return;
+    }
+
+    this.loading = true;
+    this.citizenService.save(this.registerForm.value)
+    .pipe(first())
+    .subscribe(
+      (data) => {
+        this.router.navigate(['/authentification/login']);
+      },
+    error => {
+      this.loading = false;
+    });
+  }
 }

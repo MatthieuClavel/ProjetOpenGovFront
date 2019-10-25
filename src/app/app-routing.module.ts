@@ -1,4 +1,7 @@
 import { GraphComponent } from './graph/graph.component';
+import { ParametersComponent } from './authentification/parameters/parameters.component';
+import { AuthGuard } from './_helpers/auth.gard';
+import { SurveyVoteComponent } from './survey/survey-vote/survey-vote.component';
 import { SurveyCreateComponent } from './survey/survey-create/survey-create.component';
 import { SurveyListComponent } from './survey/survey-list/survey-list.component';
 import { SurveyComponent } from './survey/survey.component';
@@ -16,16 +19,20 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
   { path: 'authentification', component: AuthentificationComponent, children : [
-      { path: 'createAccount', component: CreateaccountComponent },
-      { path: 'enterAccount', component: EnteraccountComponent }
+      { path: 'register', component: CreateaccountComponent },
+      { path: 'login', component: EnteraccountComponent },
+      { path: 'param/:id', component: ParametersComponent }
     ]},
-  { path: 'proposal', component: ProposalComponent, children : [
+  { path: 'proposal', component: ProposalComponent, canActivate: [AuthGuard] , children : [
       { path: 'createProposal', component: ProposalCreateComponent },
-      { path: 'listProposal', component: ProposalListComponent }
+      { path: 'listProposal', component: ProposalListComponent },
+      { path: 'createProposal/:id', component: ProposalCreateComponent }
     ]},
   { path: 'survey', component: SurveyComponent, children : [
       { path: 'createSurvey', component: SurveyCreateComponent },
-      { path: 'listSurvey', component: SurveyListComponent }
+      { path: 'listSurvey', component: SurveyListComponent },
+      {path: 'voteSurvey/:id', component: SurveyVoteComponent},
+      {path: 'createSurvey', component: SurveyCreateComponent}
     ]},
     { path: 'graph', component: GraphComponent},
   { path: '', redirectTo: '/accueil', pathMatch: 'full' }

@@ -1,1 +1,26 @@
-<p>survey-list works!</p>
+<div class="card-title">
+    <button class="btn btn-info" (click)="RedirectToAdd()">Ajouter un sondage</button>
+    <div class="card" *ngFor="let survey of surveys">
+        <div class="card-body">
+            <h5 class="card-title">{{survey.question}}</h5>
+            <h6 class="card-title">{{survey.surveyId}}</h6>
+            <p class="card-text">{{survey.possibleAnswers}}</p>
+            <button class="btn btn-primary" (click)="RedirectToVote(survey.surveyId)">Voter</button>
+            <button class="btn btn-danger" (click)="delete(survey.surveyId)">Supprimer</button>
+        </div>
+    </div>
+</div>
+<!-- <div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Titre du sondage</h5>
+        <p class="card-text">description</p>
+        <button class="btn btn-primary">Voter</button>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Titre du sondage</h5>
+        <p class="card-text">description</p>
+        <button class="btn btn-primary">Voter</button>
+    </div>
+</div> -->

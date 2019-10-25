@@ -1,6 +1,6 @@
 <header>
     <div class="card">
-      <div class="card-header" style="text-align: center; background-color: grey;">
+      <div class="card-header" style="text-align: center; background-color: rgb(194, 191, 191);">
         <!-- <h2>GOUV & MOI</h2><br> -->
         <div class="navbar-brand">
           <a class="navbar-item">
@@ -9,10 +9,10 @@
         </div>
       </div>
   
-      <div class="card-body" style="text-align: center; background-color: lightgrey; border-block-color: black;">
+      <div class="card-body" style="text-align: center; background-color: rgb(231, 226, 226); border-block-color: black;">
         <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-secondary">Nom de l'utilisateur</button>
-          <button type="button" class="btn btn-secondary">Se déconnecter</button>
+          <button type="button" class="btn btn-secondary" (click)="goToLog()">Login</button>
+          <button type="button" class="btn btn-secondary" (click)="deco()">Se déconnecter</button>
         </div>
       </div>
     </div>
@@ -22,16 +22,14 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col">
-            <!-- style="background-color: lightgrey;" -->
-          <!-- <div class="col-1"> -->
-          <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="/proposal/listProposal" role="tab"
               aria-controls="v-pills-home" aria-selected="true">Propositions</a>
-            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
+            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="/survey/listSurvey" role="tab"
               aria-controls="v-pills-profile" aria-selected="false">Sondages</a>
             <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab"
               aria-controls="v-pills-messages" aria-selected="false">Données financières</a>
-            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
+            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="/accueil" role="tab"
               aria-controls="v-pills-settings" aria-selected="false">Paramètres du compte</a>
           </div>
         </div>
