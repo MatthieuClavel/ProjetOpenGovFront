@@ -48,7 +48,7 @@ export class ProposalCreateComponent implements OnInit {
   ajouter() {
     this.service.add(this.form.value).subscribe(
       (data) => {
-        this.router.navigate(['/proposal/listProposal']);
+        this.router.navigate(['/proposals/listProposal']);
       });
 
   }
@@ -58,7 +58,7 @@ export class ProposalCreateComponent implements OnInit {
       (response) => {
         this.service.editMode = false;
         this.editMode = false;
-        this.router.navigate(['/proposal/listProposal']);
+        this.router.navigate(['/proposals/listProposal']);
       });
   }
 
