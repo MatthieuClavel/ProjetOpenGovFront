@@ -1,4 +1,4 @@
-import { Proposal } from './../app/model/Proposal';
+import { ProposalFull } from '../app/model/ProposalFull';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
@@ -17,12 +17,12 @@ export class ServiceService {
     private authenticationService: AuthenticationService
   ) { }
   url = 'http://localhost:8082/';
-  proposals: Proposal[] = [];
+  proposals: ProposalFull[] = [];
   editMode = false;
-  proposal: Proposal = new Proposal();
+  proposal: ProposalFull = new ProposalFull();
 
 
-  public add(proposal: Proposal): Observable<any> {
+  public add(proposal: ProposalFull): Observable<any> {
     proposal.creatorProposal = this.authenticationService.currentUserValue;
     return this.http.post(this.url + 'proposals/add', proposal);
   }

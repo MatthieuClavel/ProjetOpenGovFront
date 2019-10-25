@@ -33,7 +33,7 @@ export class AccueilComponent implements OnInit {
   private loadAllCitizens() {
     this.citizenService.getAll()
     .pipe(first())
-    .subscribe(citizens => { this.citizens = citizens._embedded.citizens; } );
+    .subscribe(citizens => { this.citizens = citizens; } );
   }
 
   updateCitizen(id: number) {

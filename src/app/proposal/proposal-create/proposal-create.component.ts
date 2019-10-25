@@ -1,4 +1,4 @@
-import { Proposal } from './../../model/Proposal';
+import { ProposalFull } from '../../model/ProposalFull';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { ServiceService } from './../../../Service/service.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
@@ -14,9 +14,9 @@ export class ProposalCreateComponent implements OnInit {
   form: FormGroup;
   index: any;
   editMode: any;
-  proposals: any[];
-  proposal: any;
-  creator: any;
+  proposals: ProposalFull[];
+  proposal: ProposalFull;
+  creatorLogin: string;
 
   constructor(
     private service: ServiceService,
@@ -38,7 +38,7 @@ export class ProposalCreateComponent implements OnInit {
           this.form.setValue(response);
         });
         this.service.getCreator(this.index).subscribe((creator) => {
-          this.creator = creator.login;
+          this.creatorLogin = creator.login;
         });
       }
     });

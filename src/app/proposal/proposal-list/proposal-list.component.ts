@@ -1,4 +1,4 @@
-import { Proposal } from './../../model/Proposal';
+import { ProposalFull } from '../../model/ProposalFull';
 import { ServiceService } from './../../../Service/service.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ProposalListComponent implements OnInit {
   result: any[];
-  proposals: Proposal[];
+  proposals: ProposalFull[];
   creator: any;
 
   constructor(private router: Router, private service: ServiceService) { }

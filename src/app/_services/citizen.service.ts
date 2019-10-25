@@ -9,11 +9,11 @@ export class CitizenService {
     constructor(private http: HttpClient, private sharedService: SharedService) {}
 
     getOne(id: number) {
-        return this.http.get<Citizen[]>(`${this.sharedService.apiUrl}/citizens/${id}`);
+        return this.http.get<Citizen[]>(`${this.sharedService.apiUrl}/citizens/find/${id}`);
     }
 
     getAll() {
-        return this.http.get<any>(`${this.sharedService.apiUrl}/citizens`);
+        return this.http.get<any>(`${this.sharedService.apiUrl}/citizens/findAll`);
     }
 
     save(citizen: Citizen) {
