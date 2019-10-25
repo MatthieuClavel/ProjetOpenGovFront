@@ -1,8 +1,9 @@
 import { Proposal } from './../app/model/Proposal';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
+import { Citizen } from 'src/app/_model/Citizen';
+import { AuthenticationService } from 'src/app/_services/authentication.service';
 
 
 
@@ -11,22 +12,26 @@ import { map, catchError, tap } from 'rxjs/operators';
 })
 export class ServiceService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private authenticationService: AuthenticationService
+  ) { }
   url = 'http://localhost:8082/';
-  proposals: any[] = [];
+  proposals: Proposal[] = [];
   editMode = false;
-  proposal = new Object();
+  proposal: Proposal = new Proposal();
 
 
-  public add(proposal: any): Observable<any> {
-    return this.http.post(this.url + 'proposal/', proposal);
+  public add(proposal: Proposal): Observable<any> {
+    proposal.creatorProposal = this.authenticationService.currentUserValue;
+    return this.http.post(this.url + 'proposals/add', proposal);
   }
 
   public update(proposal: any): Observable<any> {
     return this.http.put(this.url + 'proposals/' + proposal.proposalId, proposal, { observe: 'response' });
   }
 
-  public findAll1(): Observable<any> {
+  public findAll(): Observable<any> {
     return this.http.get<any>(this.url + 'proposals/');
   }
 
@@ -35,5 +40,9 @@ export class ServiceService {
   }
   public getOne(id: any): Observable<any> {
     return this.http.get<any>(this.url + 'proposals/' + id);
+  }
+
+  public getCreator(id: any): Observable<Citizen> {
+    return this.http.get<any>(this.url + 'proposals/' + id + '/creatorProposal');
   }
 }

@@ -16,68 +16,50 @@ export class ProposalCreateComponent implements OnInit {
   editMode: any;
   proposals: any[];
   proposal: any;
+  creator: any;
 
-  // tslint:disable-next-line:max-line-length
-  constructor(private service: ServiceService, private activatedRoute: ActivatedRoute, private router: Router, private formbuilder: FormBuilder) { }
+  constructor(
+    private service: ServiceService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private formbuilder: FormBuilder
+  ) { }
 
   ngOnInit() {
     this.form = this.formbuilder.group({
       proposalId: [0],
       title: ['', Validators.required],
       description: ['', Validators.required],
-      // creatorProposal: [0]
     });
-    // this.form = new FormGroup({
-    // title: new FormGroup(),
-    // description: new FormGroup()
-    // });
     this.activatedRoute.params.subscribe((param: Params) => {
-      // tslint:disable-next-line:no-string-literal
-      this.index = param['id'];
-      alert(this.index);
+      this.index = param.id;
       if (this.index) {
         this.service.getOne(this.index).subscribe((response) => {
           this.form.setValue(response);
         });
-        // this.form.setValue(this.service.proposals[this.index]);
+        this.service.getCreator(this.index).subscribe((creator) => {
+          this.creator = creator.login;
+        });
       }
     });
     this.editMode = this.service.editMode;
   }
 
   ajouter() {
-    alert(this.form.value.creatorProposal);
     this.service.add(this.form.value).subscribe(
       (data) => {
-        //  this.router.navigate(['/proposal/listProposal']);
-        // this.form.reset();
-        this.loadAllProposals();
+        this.router.navigate(['/proposal/listProposal']);
       });
-    // console.log(this.service.proposals);
 
   }
 
   update() {
     this.service.update(this.form.value).subscribe(
       (response) => {
-
-        // this.proposals.indexOf(this.proposals);
         this.service.editMode = false;
         this.editMode = false;
-        // this.loadAllProposals();
         this.router.navigate(['/proposal/listProposal']);
       });
   }
-
-  loadAllProposals() {
-    this.proposals = this.service.proposals;
-    this.service.findAll1().subscribe(
-      (response) => {
-        this.proposals = response._embedded.proposals;
-      }
-    );
-  }
-
-
 
 }

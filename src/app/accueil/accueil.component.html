@@ -6,7 +6,7 @@
 <h3>All registered citizens:</h3>
 <ul>
     <li *ngFor="let citizen of citizens">
-        {{citizen.citizenId}} {{citizen.login}} {{citizen.password}}
+        {{citizen.citizenId}} <a (click)="updateCitizen(citizen.citizenId)" class="text-warning">{{citizen.login}}</a> {{citizen.password}}
         - <a (click)="deleteCitizen(citizen.citizenId)" class="text-danger">Delete</a>
     </li>
 </ul>
