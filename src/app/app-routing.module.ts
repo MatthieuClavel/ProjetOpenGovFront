@@ -28,7 +28,8 @@ const routes: Routes = [
   { path: 'survey', component: SurveyComponent, children : [
       { path: 'createSurvey', component: SurveyCreateComponent },
       { path: 'listSurvey', component: SurveyListComponent },
-      {path: 'voteSurvey', component: SurveyVoteComponent}
+      {path: 'voteSurvey/:id', component: SurveyVoteComponent},
+      {path: 'createSurvey', component: SurveyCreateComponent}
     ]},
   { path: '', redirectTo: '/accueil', pathMatch: 'full' }
 ];

@@ -27,6 +27,7 @@ export class ProposalListComponent implements OnInit {
   }
 
   delete(id) {
+    alert(id);
     if ( confirm('Etes-vous sûr de vouloir supprimer ?')) {
     this.service.delete(id).subscribe(
       response => {
@@ -37,7 +38,7 @@ export class ProposalListComponent implements OnInit {
   } }
 
   edit(id) {
-    alert(id);
+    // alert(id);
     this.router.navigate(['/proposal/createProposal', id]);
     this.service.editMode = true;
   }

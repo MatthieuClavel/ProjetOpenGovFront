@@ -34,7 +34,7 @@ export class ProposalCreateComponent implements OnInit {
     this.activatedRoute.params.subscribe((param: Params) => {
       // tslint:disable-next-line:no-string-literal
       this.index = param['id'];
-      alert(this.index);
+      // alert(this.index);
       if (this.index) {
         this.service.getOne(this.index).subscribe((response) => {
           this.form.setValue(response);
@@ -46,12 +46,12 @@ export class ProposalCreateComponent implements OnInit {
   }
 
   ajouter() {
-    alert(this.form.value.creatorProposal);
     this.service.add(this.form.value).subscribe(
       (data) => {
         //  this.router.navigate(['/proposal/listProposal']);
         // this.form.reset();
-        this.loadAllProposals();
+        // this.loadAllProposals();
+        this.router.navigate(['proposals/listProposals']);
       });
     // console.log(this.service.proposals);
 

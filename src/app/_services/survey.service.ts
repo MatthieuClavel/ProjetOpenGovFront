@@ -4,21 +4,20 @@ import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class ServiceService {
+export class SurveyService {
 
   constructor(private http: HttpClient) { }
   url = 'http://localhost:8082/';
   surveys: any[] = [];
   editMode = false;
-  survey = new Object();
+  // survey = new Object();
 
 
   public add(survey: any): Observable<any> {
-    return this.http.post(this.url + 'survey/', survey);
+    return this.http.post(this.url + 'surveys/', survey);
   }
 
   public update(survey: any): Observable<any> {
