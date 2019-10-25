@@ -19,6 +19,7 @@ import { SurveyVoteComponent } from './survey/survey-vote/survey-vote.component'
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ParametersComponent } from './authentification/parameters/parameters.component';
+import { ProposalCommentComponent } from './proposal/proposal-comment/proposal-comment.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ParametersComponent } from './authentification/parameters/parameters.co
     SurveyListComponent,
     SurveyCreateComponent,
     SurveyVoteComponent,
-    ParametersComponent
+    ParametersComponent,
+    ProposalCommentComponent
   ],
   imports: [
     BrowserModule,
