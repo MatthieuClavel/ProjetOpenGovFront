@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import sampleData from './data.json';
 import { AuthenticationService } from './_services/authentication.service';
 import { Router } from '@angular/router';
 
@@ -9,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'ProjetOpenGov';
+Users: any = sampleData;
+  public countryList: any;
 
   constructor(private authenticationService: AuthenticationService, private router: Router) {}
 
@@ -21,3 +24,7 @@ export class AppComponent {
     this.router.navigate(['/authentification/login']);
   }
 }
+
+
+
+

@@ -1,0 +1,19 @@
+<canvas id="myChart" style="max-width: 5000px;"></canvas>
+
+<div class="btn-group" role="group" aria-label="Basic example">
+        <button (click)="erase()" class="btn btn-secondary">Init</button>
+        <button (click)="add()" class="btn btn-secondary">Add Serie</button>
+   
+      </div>
+
+<highcharts-chart
+   [Highcharts] = "highcharts" 
+   id="container"
+   [oneToOne]="true"
+   [options] = "chartOptions" 
+   [(update)]="updateFromInput"
+   style = "width: 100%; height: 400px; display: block;">
+   chart.data[0].remove();
+</highcharts-chart>
+
+

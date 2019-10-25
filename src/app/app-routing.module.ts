@@ -1,4 +1,5 @@
 import { ProposalCommentComponent } from './proposal/proposal-comment/proposal-comment.component';
+import { GraphComponent } from './graph/graph.component';
 import { ParametersComponent } from './authentification/parameters/parameters.component';
 import { AuthGuard } from './_helpers/auth.gard';
 import { SurveyVoteComponent } from './survey/survey-vote/survey-vote.component';
@@ -35,6 +36,7 @@ const routes: Routes = [
       {path: 'voteSurvey/:id', component: SurveyVoteComponent},
       {path: 'createSurvey', component: SurveyCreateComponent}
     ]},
+    { path: 'graph', component: GraphComponent},
   { path: '', redirectTo: '/accueil', pathMatch: 'full' }
 ];
 
