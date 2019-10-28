@@ -1,11 +1,8 @@
 import { first } from 'rxjs/operators';
 import { SurveyService } from './../../_services/survey.service';
-import { ProposalService } from '../../_services/proposal.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { ResourceLoader } from '@angular/compiler';
-import { SurveyFull } from 'src/app/_model/SurveyFull';
+import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { Survey } from 'src/app/_model/Survey';
 
 @Component({
@@ -16,24 +13,42 @@ import { Survey } from 'src/app/_model/Survey';
 export class SurveyCreateComponent implements OnInit {
 
   form: FormGroup;
+  possibleAnswers: FormArray;
   loading = false;
   submitted = false;
   survey = new Survey();
 
-  // tslint:disable-next-line:max-line-length
   constructor(
-    private activatedRoute: ActivatedRoute,
     private router: Router,
-    private formbuilder: FormBuilder,
+    private formBuilder: FormBuilder,
     private service: SurveyService
   ) { }
 
   ngOnInit() {
-    this.form = this.formbuilder.group({
+    this.form = this.formBuilder.group({
       surveyId: [0],
       question: ['', Validators.required],
-      possibleAnswers: ['', Validators.required]
+      possibleAnswers: this.formBuilder.array( [this.initItem()] )
     });
+    this.possibleAnswers = this.form.get('possibleAnswers') as FormArray;
+    this.possibleAnswers.push(this.initItem());
+  }
+
+  initItem(): FormGroup {
+    return this.formBuilder.group({
+      answer: ['', Validators.required]
+    });
+  }
+
+  createItem(): FormGroup {
+    return this.formBuilder.group({
+      answer: ['']
+    });
+  }
+
+  addItem(): void {
+    this.possibleAnswers = this.form.get('possibleAnswers') as FormArray;
+    this.possibleAnswers.push(this.createItem());
   }
 
 
@@ -46,13 +61,16 @@ export class SurveyCreateComponent implements OnInit {
 
     this.loading = true;
 
-    this.survey = this.form.value;
-    alert(this.survey);
+    this.survey.question = this.form.value.question;
+    this.survey.possibleAnswers = this.possibleAnswers.value[0].answer;
+    for (let index = 1; index < this.possibleAnswers.value.length; index++) {
+      this.survey.possibleAnswers = this.survey.possibleAnswers + ',' + this.possibleAnswers.value[index].answer;
+    }
     this.service.save(this.survey)
       .pipe(first())
       .subscribe(
         (data) => {
-          this.router.navigate(['/survey/listSurvey']);
+          this.router.navigate(['/survey/list']);
         },
         error => {
           this.loading = false;

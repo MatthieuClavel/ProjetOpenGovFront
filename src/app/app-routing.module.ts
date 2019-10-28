@@ -25,15 +25,15 @@ const routes: Routes = [
       { path: 'param/:id', component: ParametersComponent }
     ]},
   { path: 'proposal', component: ProposalComponent, canActivate: [AuthGuard], children : [
-      { path: 'createProposal', component: ProposalCreateComponent },
-      { path: 'listProposal', component: ProposalListComponent },
-      { path: 'createProposal/:id', component: ProposalCreateComponent },
-      { path: 'commentProposal/:id', component: ProposalCommentComponent }
+      { path: 'create', component: ProposalCreateComponent },
+      { path: 'list', component: ProposalListComponent },
+      { path: 'create/:id', component: ProposalCreateComponent },
+      { path: 'comment/:id', component: ProposalCommentComponent }
     ]},
   { path: 'survey', component: SurveyComponent, canActivate: [AuthGuard], children : [
-      { path: 'createSurvey', component: SurveyCreateComponent },
-      { path: 'listSurvey', component: SurveyListComponent },
-      {path: 'voteSurvey/:id', component: SurveyVoteComponent}
+      { path: 'create', component: SurveyCreateComponent },
+      { path: 'list', component: SurveyListComponent },
+      {path: 'vote/:id', component: SurveyVoteComponent}
     ]},
     { path: 'graph', component: GraphComponent},
   { path: '', redirectTo: '/accueil', pathMatch: 'full' }

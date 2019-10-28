@@ -1,45 +1,57 @@
-  <header>
-    <div class="card">
-      <div class="card-header" style="text-align: center; background-color: rgb(194, 191, 191);">
-        <!-- <h2>GOUV & MOI</h2><br> -->
-        <div class="navbar-brand">
-          <a class="navbar-item">
-            <img src="assets/images/logo_projet.png">
-          </a>
-        </div>
-      </div>
-  
-      <div class="card-body" style="text-align: center; background-color: rgb(231, 226, 226); border-block-color: black;">
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-secondary" (click)="goToLog()">Login</button>
-          <button type="button" class="btn btn-secondary" (click)="deco()">Se déconnecter</button>
-        </div>
+<header>
+  <div class="card">
+    <div class="card-header" style="text-align: center; background-color: rgb(194, 191, 191);">
+      <!-- <h2>GOUV & MOI</h2><br> -->
+      <div class="navbar-brand">
+        <a class="navbar-item">
+          <img src="assets/images/logo_projet.png">
+        </a>
       </div>
     </div>
-  </header>
-  
-  <body>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col">
-            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="/proposal/listProposal" role="tab"
-              aria-controls="v-pills-home" aria-selected="true">Propositions</a>
-            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="/survey/listSurvey" role="tab"
-              aria-controls="v-pills-profile" aria-selected="false">Sondages</a>
-            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="/graph" role="tab"
-              aria-controls="v-pills-messages" aria-selected="false">Données financières</a>
-            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="/accueil" role="tab"
-              aria-controls="v-pills-settings" aria-selected="false">Paramètres du compte</a>
-          </div>
-        </div>
-        <div class="col-lg">
-          <router-outlet></router-outlet>
-        </div>
-        <div class="col">
-  
-        </div>
+
+    <div class="card-body" style="text-align: center; background-color: rgb(231, 226, 226); border-block-color: black;">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-secondary" (click)="goToLog()">Login</button>
+        <button type="button" class="btn btn-secondary" (click)="deco()">Se déconnecter</button>
       </div>
     </div>
-  </body>
-    
+  </div>
+</header>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <a [ngClass]="{'nav-link active': currentPage == 'accueil', 'nav-link': currentPage != 'accueils'}"
+            data-toggle="pill" href="/accueil" role="tab" aria-controls="v-pills-settings"
+            aria-selected="true">Accueil</a>
+          <a [ngClass]="{'nav-link active': currentPage == 'proposal', 'nav-link': currentPage != 'proposals'}"
+            data-toggle="pill" href="/proposal/list" role="tab" aria-controls="v-pills-home"
+            aria-selected="true">Propositions</a>
+          <a [ngClass]="{'nav-link active': currentPage == 'survey', 'nav-link': currentPage != 'surveys'}"
+            data-toggle="pill" href="/survey/list" role="tab" aria-controls="v-pills-profile"
+            aria-selected="true">Sondages</a>
+          <a [ngClass]="{'nav-link active': currentPage == 'graph', 'nav-link': currentPage != 'graphs'}"
+            data-toggle="pill" href="/graph" role="tab" aria-controls="v-pills-messages" aria-selected="true">Données
+            financières</a>
+          <br />
+          <a *ngIf="!connected"
+            [ngClass]="{'nav-link active': currentPage == 'authentification', 'nav-link': currentPage != 'authentifications'}"
+            data-toggle="pill" href="/authentification/login" role="tab"
+            aria-controls="v-pills-home" aria-selected="true">Authentification</a>
+          <a *ngIf="connected"
+            [ngClass]="{'nav-link active': currentPage == 'authentification', 'nav-link': currentPage != 'authentifications'}"
+            data-toggle="pill" href="/accueil" (click)="deco()" role="tab" aria-controls="v-pills-home"
+            aria-selected="true">Deconnexion</a>
+        </div>
+      </div>
+      <div class="col-8">
+        <router-outlet></router-outlet>
+      </div>
+      <div class="col">
+
+      </div>
+    </div>
+  </div>
+</body>

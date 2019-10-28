@@ -19,7 +19,7 @@ export class SurveyVoteComponent implements OnInit {
   question: string;
   possibleResponses: any[];
   citizenAnswer = null;
-  answerForm = new FormGroup({ answer: new FormControl(this.citizenAnswer, Validators.required) });
+  answerForm: FormGroup;
   citizenSurvey = new Citizen_SurveyFull();
   loading = false;
   submitted = false;
@@ -33,6 +33,10 @@ export class SurveyVoteComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.answerForm = new FormGroup({
+      answer: new FormControl(null)
+    });
+
     this.activatedRoute.params.subscribe((param: Params) => {
       this.index = param.id;
       if (this.index) {
@@ -43,6 +47,7 @@ export class SurveyVoteComponent implements OnInit {
 
           this.survey.citizenSurveys.forEach(citizenSurvey => {
             if (citizenSurvey.citizen.login === this.authenticationService.currentUserValue.login) {
+              this.answerForm.get('answer').setValue(citizenSurvey.vote);
               this.citizenAnswer = citizenSurvey.vote;
             }
           });
@@ -69,7 +74,7 @@ export class SurveyVoteComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data) => {
-          this.router.navigate(['/survey/listSurvey']);
+          this.router.navigate(['/survey/list']);
         },
         error => {
           this.loading = false;

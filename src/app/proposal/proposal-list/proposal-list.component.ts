@@ -12,7 +12,10 @@ export class ProposalListComponent implements OnInit {
   proposals: ProposalFull[];
   creator: any;
 
-  constructor(private router: Router, private service: ProposalService) { }
+  constructor(
+    private router: Router,
+    private service: ProposalService
+    ) { }
 
   ngOnInit() {
     this.loadAllProposals();
@@ -30,21 +33,21 @@ export class ProposalListComponent implements OnInit {
     if (confirm('Etes-vous sûr de vouloir supprimer ?')) {
       this.service.delete(id).subscribe(
         (response) => {
-          this.router.navigate(['proposal/listProposal']);
+          this.router.navigate(['proposal/list']);
         });
     }
   }
 
   edit(id) {
-    this.router.navigate(['/proposal/createProposal', id]);
+    this.router.navigate(['/proposal/create', id]);
   }
 
   goToAdd() {
-    this.router.navigate(['/proposal/createProposal']);
+    this.router.navigate(['/proposal/create']);
   }
 
   goToComment(id) {
-    this.router.navigate(['/proposal/commentProposal', id]);
+    this.router.navigate(['/proposal/comment', id]);
   }
 
 }

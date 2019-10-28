@@ -1,8 +1,5 @@
-import { SurveyResponse } from '../../_model/Citizen_Survey_Response';
 import { SurveyAnswer } from '../../_model/SurveyAnswer';
 import { AuthenticationService } from './../../_services/authentication.service';
-import { SurveyFull } from '../../_model/SurveyFull';
-import { Survey } from '../../_model/Survey';
 import { SurveyService } from './../../_services/survey.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -23,7 +20,8 @@ export class SurveyListComponent implements OnInit {
   constructor(
     private router: Router,
     private service: SurveyService,
-    private authenticationService: AuthenticationService) { }
+    private authenticationService: AuthenticationService
+  ) { }
 
   loadAllSurveys() {
     this.service.findAll().subscribe(
@@ -62,18 +60,18 @@ export class SurveyListComponent implements OnInit {
     if (confirm('Etes-vous sûr de vouloir supprimer ?')) {
       this.service.delete(id).subscribe(
         (response) => {
-          this.router.navigate(['survey/listSurvey']);
+          this.router.navigate(['survey/list']);
           location.reload();
         });
     }
   }
 
   RedirectToAdd() {
-    this.router.navigate(['survey/createSurvey']);
+    this.router.navigate(['survey/create']);
   }
 
   RedirectToVote(id) {
-    this.router.navigate(['survey/voteSurvey', id]);
+    this.router.navigate(['survey/vote', id]);
   }
 
 }

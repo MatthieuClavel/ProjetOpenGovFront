@@ -4,7 +4,6 @@ import { first } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Citizen } from 'src/app/_model/Citizen';
 
 @Component({
   selector: 'app-createaccount',

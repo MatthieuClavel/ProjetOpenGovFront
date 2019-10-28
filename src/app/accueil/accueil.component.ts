@@ -18,7 +18,7 @@ export class AccueilComponent implements OnInit {
   constructor(private router: Router,
               private authenticationService: AuthenticationService,
               private citizenService: CitizenService
-              ) {
+  ) {
     this.currentUser = this.authenticationService.currentUserValue;
     this.isAuth = this.currentUser != null;
   }

@@ -55,7 +55,8 @@ export class GraphComponent implements OnInit {
   };
   stockChart: any;
 
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit() {
   }

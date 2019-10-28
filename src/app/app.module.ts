@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ParametersComponent } from './authentification/parameters/parameters.component';
 import { ProposalCommentComponent } from './proposal/proposal-comment/proposal-comment.component';
+import { MatRadioModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ProposalCommentComponent } from './proposal/proposal-comment/proposal-c
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatRadioModule
   ],
   bootstrap: [AppComponent]
 })

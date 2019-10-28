@@ -1,7 +1,5 @@
-import { Proposal } from '../../_model/Proposal';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { CitizenService } from './../../_services/citizen.service';
-import { Citizen } from '../../_model/Citizen';
 import { Component, OnInit } from '@angular/core';
 import { Router, Params, ActivatedRoute } from '@angular/router';
 
