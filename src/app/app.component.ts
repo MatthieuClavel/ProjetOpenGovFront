@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import sampleData from './data.json';
 import { AuthenticationService } from './_services/authentication.service';
 import { Router } from '@angular/router';
-import * as data from './data.json';
+
 
 @Component({
   selector: 'app-root',

@@ -17,11 +17,13 @@ export class ServiceService {
   ) { }
   url = 'http://localhost:8082/';
   proposals: ProposalFull[] = [];
+  editMode = false;
   proposal: ProposalFull = new ProposalFull();
 
 
   public add(proposal: ProposalFull): Observable<any> {
     proposal.creatorProposal = this.authenticationService.currentUserValue;
+    console.log(proposal);
     return this.http.post(this.url + 'proposals/add', proposal);
   }
 
