@@ -13,11 +13,14 @@ import { Router } from '@angular/router';
 export class AccueilComponent implements OnInit {
   currentUser: Citizen;
   citizens = [];
+  public isAuth = false;
 
   constructor(private router: Router,
               private authenticationService: AuthenticationService,
-              private citizenService: CitizenService) {
+              private citizenService: CitizenService
+              ) {
     this.currentUser = this.authenticationService.currentUserValue;
+    this.isAuth = this.currentUser != null;
   }
 
   ngOnInit() {
@@ -33,7 +36,7 @@ export class AccueilComponent implements OnInit {
   private loadAllCitizens() {
     this.citizenService.getAll()
     .pipe(first())
-    .subscribe(citizens => { this.citizens = citizens._embedded.citizens; } );
+    .subscribe(citizens => { this.citizens = citizens; } );
   }
 
   updateCitizen(id: number) {

@@ -1,4 +1,4 @@
-import { Proposal } from './../../model/Proposal';
+import { ProposalFull } from '../../model/ProposalFull';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { ServiceService } from './../../../Service/service.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
@@ -13,10 +13,10 @@ export class ProposalCreateComponent implements OnInit {
 
   form: FormGroup;
   index: any;
-  editMode: any;
-  proposals: any[];
-  proposal: any;
-  creator: any;
+  editMode = false;
+  proposals: ProposalFull[];
+  proposal: ProposalFull;
+  creatorLogin = 'Moi';
 
   constructor(
     private service: ServiceService,
@@ -30,25 +30,25 @@ export class ProposalCreateComponent implements OnInit {
       proposalId: [0],
       title: ['', Validators.required],
       description: ['', Validators.required],
+      creatorProposal: [null],
+      citizenProposals: [null]
     });
     this.activatedRoute.params.subscribe((param: Params) => {
       this.index = param.id;
       if (this.index) {
         this.service.getOne(this.index).subscribe((response) => {
+          this.editMode = true;
           this.form.setValue(response);
-        });
-        this.service.getCreator(this.index).subscribe((creator) => {
-          this.creator = creator.login;
+          this.creatorLogin = response.creatorProposal.login;
         });
       }
     });
-    this.editMode = this.service.editMode;
   }
 
   ajouter() {
     this.service.add(this.form.value).subscribe(
       (data) => {
-        this.router.navigate(['/proposals/listProposal']);
+        this.router.navigate(['/proposal/listProposal']);
       });
 
   }
@@ -56,9 +56,8 @@ export class ProposalCreateComponent implements OnInit {
   update() {
     this.service.update(this.form.value).subscribe(
       (response) => {
-        this.service.editMode = false;
         this.editMode = false;
-        this.router.navigate(['/proposals/listProposal']);
+        this.router.navigate(['/proposal/listProposal']);
       });
   }
 

@@ -4,9 +4,7 @@ import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class SurveyService {
 
   constructor(private http: HttpClient) { }
@@ -16,22 +14,22 @@ export class SurveyService {
   // survey = new Object();
 
 
-  public add(survey: any): Observable<any> {
-    return this.http.post(this.url + 'surveys/', survey);
+  public save(survey: any): Observable<any> {
+    return this.http.post(this.url + 'surveys/add', survey);
   }
 
   public update(survey: any): Observable<any> {
     return this.http.put(this.url + 'surveys/' + survey.surveyId, survey, { observe: 'response' });
   }
 
-  public findAll1(): Observable<any> {
-    return this.http.get<any>(this.url + 'surveys/');
+  public findAll(): Observable<any> {
+    return this.http.get<any>(this.url + 'surveys/findAll');
   }
 
   public delete(id: any): Observable<any> {
     return this.http.delete(this.url + 'surveys/' + id);
   }
   public getOne(id: any): Observable<any> {
-    return this.http.get<any>(this.url + 'surveys/' + id);
+    return this.http.get<any>(this.url + 'surveys/findOne/' + id);
   }
 }

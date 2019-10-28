@@ -1,3 +1,4 @@
+import { Proposal } from './../../model/Proposal';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { CitizenService } from './../../_services/citizen.service';
 import { Citizen } from './../../_model/Citizen';
@@ -30,6 +31,9 @@ export class ParametersComponent implements OnInit {
       citizenId: [0],
       login: ['', Validators.required],
       password: ['', Validators.required],
+      proposals: [null],
+      citizenSurveys: [null],
+      citizenProposals: [null]
       // creatorProposal: [0]
     });
 

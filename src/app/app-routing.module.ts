@@ -1,3 +1,4 @@
+import { ProposalCommentComponent } from './proposal/proposal-comment/proposal-comment.component';
 import { GraphComponent } from './graph/graph.component';
 import { ParametersComponent } from './authentification/parameters/parameters.component';
 import { AuthGuard } from './_helpers/auth.gard';
@@ -26,13 +27,13 @@ const routes: Routes = [
   { path: 'proposal', component: ProposalComponent, canActivate: [AuthGuard] , children : [
       { path: 'createProposal', component: ProposalCreateComponent },
       { path: 'listProposal', component: ProposalListComponent },
-      { path: 'createProposal/:id', component: ProposalCreateComponent }
+      { path: 'createProposal/:id', component: ProposalCreateComponent },
+      { path: 'commentProposal/:id', component: ProposalCommentComponent }
     ]},
   { path: 'survey', component: SurveyComponent, children : [
       { path: 'createSurvey', component: SurveyCreateComponent },
       { path: 'listSurvey', component: SurveyListComponent },
-      {path: 'voteSurvey/:id', component: SurveyVoteComponent},
-      {path: 'createSurvey', component: SurveyCreateComponent}
+      {path: 'voteSurvey/:id', component: SurveyVoteComponent}
     ]},
     { path: 'graph', component: GraphComponent},
   { path: '', redirectTo: '/accueil', pathMatch: 'full' }

@@ -1,8 +1,7 @@
-import { Proposal } from './../app/model/Proposal';
+import { ProposalFull } from '../app/model/ProposalFull';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { Citizen } from 'src/app/_model/Citizen';
 import { AuthenticationService } from 'src/app/_services/authentication.service';
 
 
@@ -17,12 +16,11 @@ export class ServiceService {
     private authenticationService: AuthenticationService
   ) { }
   url = 'http://localhost:8082/';
-  proposals: Proposal[] = [];
-  editMode = false;
-  proposal: Proposal = new Proposal();
+  proposals: ProposalFull[] = [];
+  proposal: ProposalFull = new ProposalFull();
 
 
-  public add(proposal: Proposal): Observable<any> {
+  public add(proposal: ProposalFull): Observable<any> {
     proposal.creatorProposal = this.authenticationService.currentUserValue;
     return this.http.post(this.url + 'proposals/add', proposal);
   }
@@ -32,17 +30,14 @@ export class ServiceService {
   }
 
   public findAll(): Observable<any> {
-    return this.http.get<any>(this.url + 'proposals/');
+    return this.http.get<any>(this.url + 'proposals/findAll');
   }
 
   public delete(id: any): Observable<any> {
     return this.http.delete(this.url + 'proposals/' + id);
   }
   public getOne(id: any): Observable<any> {
-    return this.http.get<any>(this.url + 'proposals/' + id);
+    return this.http.get<any>(this.url + 'proposals/findOne/' + id);
   }
 
-  public getCreator(id: any): Observable<Citizen> {
-    return this.http.get<any>(this.url + 'proposals/' + id + '/creatorProposal');
-  }
 }

@@ -1,26 +1,25 @@
 <div class="card-title">
     <button class="btn btn-info" (click)="RedirectToAdd()">Ajouter un sondage</button>
-    <div class="card" *ngFor="let survey of surveys">
+    <div class="card" *ngFor="let survey of surveysWithAnswer">
         <div class="card-body">
-            <h5 class="card-title">{{survey.question}}</h5>
-            <h6 class="card-title">{{survey.surveyId}}</h6>
-            <p class="card-text">{{survey.possibleAnswers}}</p>
-            <button class="btn btn-primary" (click)="RedirectToVote(survey.surveyId)">Voter</button>
-            <button class="btn btn-danger" (click)="delete(survey.surveyId)">Supprimer</button>
+            <h4 class="card-title">{{survey.question}}</h4>
+            <div class="row">
+                <div class="col-sm">
+                    <table>
+
+                            <th>Réponse</th><th>Nombre</th>
+                        <tr *ngFor="let surveyResponse of survey.surveyResponseList">
+                        <td> {{surveyResponse.result}} </td>
+                        <td> {{surveyResponse.number}} </td>
+                    </tr>
+                    </table>
+                </div>
+                <div class="col-sm">
+                    <p *ngIf="survey.result">Votre réponse : {{survey.result}}</p>
+                    <button class="btn btn-primary" (click)="RedirectToVote(survey.surveyId)">Voter</button>
+                    <button class="btn btn-danger" (click)="delete(survey.surveyId)">Supprimer</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<!-- <div class="card">
-    <div class="card-body">
-        <h5 class="card-title">Titre du sondage</h5>
-        <p class="card-text">description</p>
-        <button class="btn btn-primary">Voter</button>
-    </div>
-</div>
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">Titre du sondage</h5>
-        <p class="card-text">description</p>
-        <button class="btn btn-primary">Voter</button>
-    </div>
-</div> -->
