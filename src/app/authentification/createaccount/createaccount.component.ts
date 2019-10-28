@@ -4,6 +4,7 @@ import { first } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Citizen } from 'src/app/_model/Citizen';
 
 @Component({
   selector: 'app-createaccount',
@@ -14,6 +15,7 @@ export class CreateaccountComponent implements OnInit {
   registerForm: FormGroup;
   loading = false;
   submitted = false;
+  loginError = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -39,6 +41,7 @@ export class CreateaccountComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    this.loginError = false;
 
     // stop here if form is invalid
     if (this.registerForm.invalid) {
@@ -50,10 +53,13 @@ export class CreateaccountComponent implements OnInit {
     .pipe(first())
     .subscribe(
       (data) => {
-        this.router.navigate(['/authentification/login']);
+        this.authenticationService.login(this.registerForm.value.login, this.registerForm.value.password);
+        this.router.navigate(['/accueil']);
       },
     error => {
+      console.log(error);
       this.loading = false;
+      this.loginError = true;
     });
   }
 }

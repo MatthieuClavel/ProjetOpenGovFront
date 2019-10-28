@@ -1,7 +1,7 @@
 import { first } from 'rxjs/operators';
 import { CitizenService } from './../_services/citizen.service';
 import { AuthenticationService } from 'src/app/_services/authentication.service';
-import { Citizen } from './../_model/Citizen';
+import { Citizen } from '../_model/Citizen';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -13,11 +13,14 @@ import { Router } from '@angular/router';
 export class AccueilComponent implements OnInit {
   currentUser: Citizen;
   citizens = [];
+  public isAuth = false;
 
   constructor(private router: Router,
               private authenticationService: AuthenticationService,
-              private citizenService: CitizenService) {
+              private citizenService: CitizenService
+              ) {
     this.currentUser = this.authenticationService.currentUserValue;
+    this.isAuth = this.currentUser != null;
   }
 
   ngOnInit() {

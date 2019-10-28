@@ -1,5 +1,5 @@
-import { ProposalFull } from '../../model/ProposalFull';
-import { ServiceService } from './../../../Service/service.service';
+import { ProposalFull } from '../../_model/ProposalFull';
+import { ProposalService } from '../../_services/proposal.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -12,7 +12,7 @@ export class ProposalListComponent implements OnInit {
   proposals: ProposalFull[];
   creator: any;
 
-  constructor(private router: Router, private service: ServiceService) { }
+  constructor(private router: Router, private service: ProposalService) { }
 
   ngOnInit() {
     this.loadAllProposals();
@@ -29,19 +29,22 @@ export class ProposalListComponent implements OnInit {
   delete(id) {
     if (confirm('Etes-vous sûr de vouloir supprimer ?')) {
       this.service.delete(id).subscribe(
-        () => {
-          this.loadAllProposals();
+        (response) => {
+          this.router.navigate(['proposal/listProposal']);
         });
     }
   }
 
   edit(id) {
     this.router.navigate(['/proposal/createProposal', id]);
-    this.service.editMode = true;
   }
 
   goToAdd() {
     this.router.navigate(['/proposal/createProposal']);
+  }
+
+  goToComment(id) {
+    this.router.navigate(['/proposal/commentProposal', id]);
   }
 
 }

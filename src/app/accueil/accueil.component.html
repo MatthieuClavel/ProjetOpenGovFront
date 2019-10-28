@@ -1,12 +1,14 @@
 <h1> Bienvenue sur le site Gouv & Moi </h1>
 <p>Ce site regroupe les informations essentielles pour comprendre les dépenses liées à l'état Français.</p>
-
-<h1>Hi {{currentUser.login}}!</h1>
-<p>You're logged in with Angular 8!!</p>
+<div *ngIf="isAuth">
+    <h1>Hi {{currentUser.login}}!</h1>
+    <p>You're logged in with Angular 8!!</p>
+</div>
 <h3>All registered citizens:</h3>
 <ul>
     <li *ngFor="let citizen of citizens">
-        {{citizen.citizenId}} <a (click)="updateCitizen(citizen.citizenId)" class="text-warning">{{citizen.login}}</a> {{citizen.password}}
+        {{citizen.citizenId}} <a (click)="updateCitizen(citizen.citizenId)" class="text-warning">{{citizen.login}}</a>
+        {{citizen.password}}
         - <a (click)="deleteCitizen(citizen.citizenId)" class="text-danger">Delete</a>
     </li>
 </ul>

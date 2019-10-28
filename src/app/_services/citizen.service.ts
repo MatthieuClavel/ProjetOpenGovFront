@@ -1,5 +1,5 @@
 import { SharedService } from './shared.service';
-import { Citizen } from './../_model/Citizen';
+import { Citizen } from '../_model/Citizen';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -9,7 +9,7 @@ export class CitizenService {
     constructor(private http: HttpClient, private sharedService: SharedService) {}
 
     getOne(id: number) {
-        return this.http.get<Citizen[]>(`${this.sharedService.apiUrl}/citizens/find/${id}`);
+        return this.http.get<Citizen[]>(`${this.sharedService.apiUrl}/citizens/findOne/${id}`);
     }
 
     getAll() {
@@ -17,7 +17,7 @@ export class CitizenService {
     }
 
     save(citizen: Citizen) {
-        return this.http.post(`${this.sharedService.apiUrl}/citizens`, citizen);
+        return this.http.post(`${this.sharedService.apiUrl}/citizens/add`, citizen);
     }
 
     update(citizen: Citizen) {

@@ -1,9 +1,12 @@
+import { first } from 'rxjs/operators';
 import { SurveyService } from './../../_services/survey.service';
-import { ServiceService } from './../../../Service/service.service';
+import { ProposalService } from '../../_services/proposal.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ResourceLoader } from '@angular/compiler';
+import { SurveyFull } from 'src/app/_model/SurveyFull';
+import { Survey } from 'src/app/_model/Survey';
 
 @Component({
   selector: 'app-sruvey-create',
@@ -11,10 +14,19 @@ import { ResourceLoader } from '@angular/compiler';
   styleUrls: ['./survey-create.component.css']
 })
 export class SurveyCreateComponent implements OnInit {
+
   form: FormGroup;
+  loading = false;
+  submitted = false;
+  survey = new Survey();
 
   // tslint:disable-next-line:max-line-length
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private formbuilder: FormBuilder, private service: SurveyService) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private formbuilder: FormBuilder,
+    private service: SurveyService
+  ) { }
 
   ngOnInit() {
     this.form = this.formbuilder.group({
@@ -25,15 +37,27 @@ export class SurveyCreateComponent implements OnInit {
   }
 
 
-ajouter() {
-  alert(this.form.value);
-  this.service.add(this.form.value).subscribe(
-    (response) => {
-      // this.form.reset();
-      this.router.navigate(['survey/listSurvey']);
+  onSubmit() {
+    this.submitted = true;
+
+    if (this.form.invalid) {
+      return;
     }
-  );
-}
+
+    this.loading = true;
+
+    this.survey = this.form.value;
+    alert(this.survey);
+    this.service.save(this.survey)
+      .pipe(first())
+      .subscribe(
+        (data) => {
+          this.router.navigate(['/survey/listSurvey']);
+        },
+        error => {
+          this.loading = false;
+        });
+  }
 
 
 

@@ -1,4 +1,3 @@
-import { ServiceService } from './../Service/service.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -48,7 +47,6 @@ import { ProposalCommentComponent } from './proposal/proposal-comment/proposal-c
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

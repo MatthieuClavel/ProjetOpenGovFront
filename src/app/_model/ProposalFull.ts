@@ -1,5 +1,5 @@
 import { Citizen_ProposalWithCitizen } from './Citizen_ProposalWithCitizen';
-import { Citizen } from '../_model/Citizen';
+import { Citizen } from './Citizen';
 
 export class ProposalFull {
     proposalId: number;

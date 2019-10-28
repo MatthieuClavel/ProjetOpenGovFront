@@ -1,6 +1,6 @@
-import { ProposalFull } from '../../model/ProposalFull';
+import { ProposalFull } from '../../_model/ProposalFull';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { ServiceService } from './../../../Service/service.service';
+import { ProposalService } from '../../_services/proposal.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -13,13 +13,13 @@ export class ProposalCreateComponent implements OnInit {
 
   form: FormGroup;
   index: any;
-  editMode: any;
+  editMode = false;
   proposals: ProposalFull[];
   proposal: ProposalFull;
   creatorLogin = 'Moi';
 
   constructor(
-    private service: ServiceService,
+    private service: ProposalService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private formbuilder: FormBuilder
@@ -37,12 +37,12 @@ export class ProposalCreateComponent implements OnInit {
       this.index = param.id;
       if (this.index) {
         this.service.getOne(this.index).subscribe((response) => {
+          this.editMode = true;
           this.form.setValue(response);
           this.creatorLogin = response.creatorProposal.login;
         });
       }
     });
-    this.editMode = this.service.editMode;
   }
 
   ajouter() {
@@ -56,7 +56,6 @@ export class ProposalCreateComponent implements OnInit {
   update() {
     this.service.update(this.form.value).subscribe(
       (response) => {
-        this.service.editMode = false;
         this.editMode = false;
         this.router.navigate(['/proposal/listProposal']);
       });
