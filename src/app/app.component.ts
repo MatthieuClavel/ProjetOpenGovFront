@@ -3,6 +3,7 @@ import sampleData from './data.json';
 import { AuthenticationService } from './_services/authentication.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

@@ -1,4 +1,4 @@
-import { Citizen } from './Citizen';
+import { Citizen } from '../_model/Citizen';
 import { Survey } from './Survey';
 
 // tslint:disable-next-line:class-name
