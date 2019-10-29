@@ -6,12 +6,12 @@
             <div class="row">
                 <div class="col-sm">
                     <table>
-
-                            <th>Réponse</th><th>Nombre</th>
+                        <th>Réponse</th>
+                        <th>Nombre</th>
                         <tr *ngFor="let surveyResponse of survey.surveyResponseList">
-                        <td> {{surveyResponse.result}} </td>
-                        <td> {{surveyResponse.number}} </td>
-                    </tr>
+                            <td> {{surveyResponse.result}} </td>
+                            <td> {{surveyResponse.number}} </td>
+                        </tr>
                     </table>
                 </div>
                 <div class="col-sm">
@@ -22,4 +22,5 @@
             </div>
         </div>
     </div>
+    <canvas id="myChart9" width="200" height="150"></canvas>
 </div>

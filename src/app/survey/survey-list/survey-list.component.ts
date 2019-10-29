@@ -1,8 +1,10 @@
 import { SurveyAnswer } from '../../_model/SurveyAnswer';
 import { AuthenticationService } from './../../_services/authentication.service';
 import { SurveyService } from './../../_services/survey.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, AfterContentInit } from '@angular/core';
 import { Router } from '@angular/router';
+import * as Chart from 'chart.js';
+import { pipe } from 'rxjs';
 
 
 @Component({
@@ -10,18 +12,21 @@ import { Router } from '@angular/router';
   templateUrl: './survey-list.component.html',
   styleUrls: ['./survey-list.component.css']
 })
-export class SurveyListComponent implements OnInit {
-
-  surveys: SurveyAnswer[];
-  surveysWithAnswer: SurveyAnswer[] = [];
-  surveyWithAnswer: SurveyAnswer;
-  possibleResponses: any[];
+export class SurveyListComponent implements OnInit, AfterContentInit {
 
   constructor(
     private router: Router,
     private service: SurveyService,
     private authenticationService: AuthenticationService
   ) { }
+
+  surveys: SurveyAnswer[];
+  surveysWithAnswer: SurveyAnswer[] = [];
+  surveyWithAnswer: SurveyAnswer;
+  possibleResponses: any[];
+
+  canvas: any;
+  ctx: any;
 
   loadAllSurveys() {
     this.service.findAll().subscribe(
@@ -41,7 +46,7 @@ export class SurveyListComponent implements OnInit {
             if (citizenSurvey.citizen.login === this.authenticationService.currentUserValue.login) {
               this.surveyWithAnswer.result = this.possibleResponses[citizenSurvey.vote];
             }
-            this.surveyWithAnswer.surveyResponseList[citizenSurvey.vote].number ++;
+            this.surveyWithAnswer.surveyResponseList[citizenSurvey.vote].number++;
           });
 
 
@@ -72,6 +77,26 @@ export class SurveyListComponent implements OnInit {
 
   RedirectToVote(id) {
     this.router.navigate(['survey/vote', id]);
+  }
+
+  ngAfterContentInit() {
+    this.canvas = document.getElementById('myChart9');
+    this.ctx = this.canvas.getContext('2d');
+    const myChart = new Chart(this.ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Entrée 1', 'Entrée 2'],
+        datasets: [{
+          label: 'Nombre de vote',
+          data: [12, 102],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: false,
+        display: true
+      }
+    });
   }
 
 }
